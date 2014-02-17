@@ -2,39 +2,78 @@
 //
 
 #include "stdafx.h"
-
+//#include "view.h"
+//#include "game.h"
+#include "controller.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 
-	if (SDL_Init(SDL_INIT_EVERYTHING) == -1){
-        std::cout << SDL_GetError() << std::endl;
-        return 1;
-    }
+	/*View mainView("fsd");
 
-	SDL_Window *window = nullptr;
-	window = SDL_CreateWindow("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
-	if (window == nullptr){
-        std::cout << SDL_GetError() << std::endl;
-        return 1;
-    }
+	Game game;
+	
+	SDL_Event e;
+	bool quit = false;
+	while(!quit)
+	{
+		 while (SDL_PollEvent(&e)){
+            //If user closes he window
+            if (e.type == SDL_QUIT)
+                quit = true;
+			if (e.type == SDL_KEYDOWN)
+			{
+				//std::cout << e.key.keysym.sym << std::endl;
+				switch(e.key.keysym.sym)
+				{
+				case 119:
+					game.getInput(UP); // W
+					break;
+				case 115:
+					game.getInput(DOWN); // S
+					break;
+				case 97:
+					game.getInput(LEFT); // A
+					break;
+				case 100:
+					game.getInput(RIGHT); // D
+					break;
+				case 32:
+					game.getInput(WAIT); // SPACE
+					break;
+				case 27:
+					quit = true;
+					break;
+				}
+			}
+		 }
 
-	SDL_Renderer *renderer = nullptr;
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    if (renderer == nullptr){
-        std::cout << SDL_GetError() << std::endl;
-        return 1;
-    }
+		 mainView.clear();
 
-	SDL_RenderClear(renderer);
-	SDL_RenderPresent(renderer);
-	SDL_Delay(2000);
+		 for(int i=0; i<HEIGHT; i++){ // DRAW MAP TILES
+			 for(int j=0; j<WIDTH; j++){
+				 
+				 mainView.drawRect(j,i,game.map[j][i].graphic);
+			 }
+		 }
 
-	SDL_DestroyWindow(window);
-	SDL_DestroyRenderer(renderer);
+		 for(int i=0; i<game.enemies.size();i++) // DRAW ENEMIES
+		 {
+			 mainView.drawRect(game.enemies[i].x ,game.enemies[i].y, game.enemies[i].graphic);
+		 }
 
-	SDL_Quit();
+		 mainView.drawRect(game.player->x ,game.player->y, game.player->graphic); // DRAW PLAYER
+
+		 mainView.render();
+		 SDL_Delay(15);
+	}
+	mainView.~View();*/
+
+	Controller main_controller;
+
+	main_controller.mainLoop();
 
 	return 0;
 }
+
 
