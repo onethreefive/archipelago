@@ -4,8 +4,8 @@
 
 View::View(std::string name)
 {
-	sWidth = 640;
-	sHeight = 480;
+	sWidth = TILE_SIZE*11;
+	sHeight = TILE_SIZE*11;
 	this->window = nullptr;
 	this->renderer = nullptr;
 
@@ -48,47 +48,13 @@ int View::init()
         std::cout << SDL_GetError() << std::endl;
         return -1;
     }
+
+	textures.push_back(loadTexture("floor.bmp", renderer));
+	textures.push_back(loadTexture("brick wall.bmp", renderer));
+	textures.push_back(loadTexture("player.bmp", renderer));
+	textures.push_back(loadTexture("bat.bmp", renderer));
+
 	return 1;
-}
-
-void View::drawRect(int x, int y, int graphic)
-{
-	SDL_Rect rect = {x*40,y*40,40,40};
-	switch(graphic)
-	{
-	//case G_GRASS:
-	case 0:
-		SDL_SetRenderDrawColor(this->renderer, 40, 180, 120, 0);
-		break;
-	//case G_STONE_WALL:
-	case 1:
-		SDL_SetRenderDrawColor(this->renderer, 50, 50, 50, 0);
-		break;
-	//case G_WATER:
-	case 2:
-		SDL_SetRenderDrawColor(this->renderer, 10, 10, 255,0);
-		break;
-	//case G_BAT:
-	case 3:
-		SDL_SetRenderDrawColor(this->renderer, 160, 10, 160,0);
-		break;
-	//case G_KNIGHT:
-	case 4:
-		SDL_SetRenderDrawColor(this->renderer, 180, 180, 180,0);
-		break;
-	//case G_PLAYER:
-	case 5:
-		SDL_SetRenderDrawColor(this->renderer, 200, 10, 20,0);
-		break;
-	//case G_CORPSE:
-	case 6:
-		SDL_SetRenderDrawColor(this->renderer, 200, 180, 20, 150);
-		break;
-	}
-
-	SDL_RenderFillRect(this->renderer, &rect);
-	SDL_SetRenderDrawColor(this->renderer, 100, 100, 20,0);
-	SDL_RenderDrawRect(this->renderer, &rect);
 }
 
 SDL_Texture* View::loadTexture(const char* image, SDL_Renderer* ren)
@@ -110,4 +76,41 @@ SDL_Texture* View::loadTexture(const char* image, SDL_Renderer* ren)
 	}
 	
 	return texture;
+}
+
+void View::drawSprite(int x, int y, int graphic)
+{
+	SDL_Rect rect = {x*TILE_SIZE,y*TILE_SIZE,TILE_SIZE,TILE_SIZE};
+
+	switch(graphic)
+	{
+	//case G_GRASS:
+	case 0:
+		SDL_RenderCopy(renderer, textures[0], NULL, &rect);
+		break;
+	//case G_STONE_WALL:
+	case 1:
+		SDL_RenderCopy(renderer, textures[1], NULL, &rect);
+		break;
+	//case G_WATER:
+	case 2:
+		SDL_RenderCopy(renderer, textures[0], NULL, &rect);
+		break;
+	//case G_BAT:
+	case 3:
+		SDL_RenderCopy(renderer, textures[3], NULL, &rect);
+		break;
+	//case G_KNIGHT:
+	case 4:
+		SDL_RenderCopy(renderer, textures[2], NULL, &rect);
+		break;
+	//case G_PLAYER:
+	case 5:
+		SDL_RenderCopy(renderer, textures[2], NULL, &rect);
+		break;
+	//case G_CORPSE:
+	case 6:
+		SDL_RenderCopy(renderer, textures[0], NULL, &rect);
+		break;
+	}
 }

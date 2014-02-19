@@ -49,21 +49,30 @@ void Controller::handleInput(SDL_Event &e)
 
 void Controller::renderToView()
 {
+	int view_range = 5;
+	int view_size = 11;
 	main_view->clear();
 
-	for(int i=0; i<HEIGHT; i++){ // DRAW MAP TILES
-		for(int j=0; j<WIDTH; j++){
+	int x_offset = main_game->player->x - view_range;
+	int y_offset = main_game->player->y - view_range;
+
+	for(int i=0; i<view_size; i++){ // DRAW MAP TILES
+		for(int j=0; j<view_size; j++){
 				 
-			main_view->drawRect(j,i,main_game->map[j][i].graphic);
+			if(j+x_offset < 0 || j+x_offset >= WIDTH || i+y_offset < 0 || i+y_offset >= HEIGHT)
+			{
+			}
+			else
+				main_view->drawSprite(j,i,main_game->map[j+x_offset][i+y_offset].graphic);
 		}
 	}
 
 	for(int i=0; i<main_game->enemies.size();i++) // DRAW ENEMIES
 	{
-		main_view->drawRect(main_game->enemies[i].x ,main_game->enemies[i].y, main_game->enemies[i].graphic);
+		main_view->drawSprite(main_game->enemies[i].x - x_offset ,main_game->enemies[i].y - y_offset, main_game->enemies[i].graphic);
 	}
 
-	main_view->drawRect(main_game->player->x ,main_game->player->y, main_game->player->graphic); // DRAW PLAYER
+	main_view->drawSprite(5 ,5, main_game->player->graphic); // DRAW PLAYER
 
 	main_view->render();
 	SDL_Delay(15);
