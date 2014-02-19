@@ -4,13 +4,14 @@
 
 const int WIDTH = 11;
 const int HEIGHT = 11;
-enum TILE_GRAPHIC {G_GRASS, G_STONE_WALL, G_WATER, G_BAT, G_KNIGHT, G_PLAYER, G_CORPSE};
+enum TILE_GRAPHIC {G_GRASS, G_STONE_WALL, G_WATER, G_BAT, G_KNIGHT, G_PLAYER, G_CORPSE}; // all possible tile graphics
 
-enum enemy_type {BAT, KNIGHT};
+enum enemy_type {BAT, KNIGHT}; // all enemy types
 
-enum tile_type {FLOOR, WALL};
+enum tile_type {FLOOR, WALL}; 
 
-enum input_type {UP, DOWN, LEFT, RIGHT, WAIT, RESET, QUIT};
+enum input_type {UP, DOWN, LEFT, RIGHT, WAIT, RESET, QUIT}; // all possible user inputs
+
 
 class Tile
 {
