@@ -36,6 +36,7 @@ Creature::Creature(int x_start, int y_start, enemy_type type)
 		health = health_max;
 		spirit = spirit_max;
 
+		break;
 	case KNIGHT:
 
 		name = "death knight";
@@ -48,6 +49,7 @@ Creature::Creature(int x_start, int y_start, enemy_type type)
 
 		health = health_max;
 		spirit = spirit_max;
+		break;
 	}
 }
 
@@ -109,7 +111,8 @@ Game::Game()
 	player = new Creature(startX, startY, KNIGHT);
 	player->graphic = G_PLAYER;
 	player->name = "player";
-	enemies.push_back(Creature(7,7, BAT));
+	
+	enemies.push_back(Creature(2,7, BAT));
 
 	running = true;
 }
