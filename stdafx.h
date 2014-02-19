@@ -12,7 +12,8 @@
 
 #include <iostream>
 #include <SDL.h>
-
+#include <vector>
+#include <ctime>
 
 
 // TODO: reference additional headers your program requires here
