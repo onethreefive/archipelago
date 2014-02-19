@@ -54,6 +54,11 @@ int View::init()
 	textures.push_back(loadTexture("player.bmp", renderer));
 	textures.push_back(loadTexture("bat.bmp", renderer));
 
+	for(int i=0; i<textures.size(); i++)
+	{
+		SDL_SetTextureAlphaMod(textures[i],255);
+	}
+
 	return 1;
 }
 
