@@ -15,7 +15,7 @@ public:
 	void mainLoop();
 	
 private:
-	Game *main_game;
+	Game main_game;
 	View *main_view;
 };
 
