@@ -6,7 +6,7 @@ class View
 {
 public:
 	
-	View(std::string name);
+	View();
 
 	~View();
 	

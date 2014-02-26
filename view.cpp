@@ -2,7 +2,7 @@
 
 
 
-View::View(std::string name)
+View::View()
 {
 	sWidth = TILE_SIZE*11;
 	sHeight = TILE_SIZE*11;
